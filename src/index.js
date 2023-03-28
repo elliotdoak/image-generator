@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { GOOGLE_API_KEY } from "./constants";
+import { isValidForm } from "./utils";
 
 $(document).ready(() => {
   $("#submit-btn").on("click", async (event) => {
@@ -49,25 +50,31 @@ const getUrls = (startLon, startLat, horDist, verDist) => {
 
 const downloadZip = async (urls) => {
   const zip = new JSZip();
-  Promise.all(
-    urls.map(async ({ url, name }) => {
-      return fetch(url)
-        .then((res) => res.blob())
-        .then((blob) => {
-          zip.file(name, blob);
-        });
-    })
-  ).then(() => {
-    //  Generate the zip file.
-    zip.generateAsync({ type: "blob" }).then((blob) => {
-      // Use FileSaver.js to download the zip file.
-      saveAs(blob, "images.zip");
-    });
-  });
-};
 
-const isValidForm = (lon, lat, horDist, verDist) =>
-  /^[-+]?\d+(\.\d{1,6})?$/.test(lon) &
-  /^[-+]?\d+(\.\d{1,6})?$/.test(lat) &
-  /^\d+$/.test(horDist) &
-  /^\d+$/.test(verDist);
+  try {
+    await Promise.all(
+      urls.map(async ({ url, name }) => {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to download image: ${response.status} ${response.statusText}`
+          );
+        }
+        const blob = await response.blob();
+        zip.file(name, blob);
+      })
+    );
+
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+
+    // Use FileSaver.js to download the zip file.
+    saveAs(zipBlob, "images.zip");
+  } catch (error) {
+    // Display error message using Swal
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: error.message,
+    });
+  }
+};

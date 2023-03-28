@@ -8,9 +8,22 @@
     <h1>Welcome to the Static Image Generator</h1>
     <form>
       <label for="lon">Longitude:</label>
-      <input type="text" id="lon" name="lon" required /><br />
+      <input
+        type="number"
+        min="-180.000000"
+        max="180.000000"
+        id="lon"
+        name="lon"
+        required
+      />
       <label for="lat">Latitude:</label>
-      <input type="text" id="lat" name="lat" required /><br />
+      <input
+        type="number"
+        min="-180.000000"
+        max="180.000000"
+        id="lat"
+        required
+      /><br />
       <label for="hor-dist">Horizontal distance:</label>
       <input
         type="number"
