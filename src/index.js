@@ -2,6 +2,7 @@ import $ from "jquery";
 import Swal from "sweetalert2";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { GOOGLE_API_KEY } from "./constants";
 
 $(document).ready(() => {
   $("#submit-btn").on("click", async (event) => {
@@ -36,8 +37,7 @@ const getUrls = (startLon, startLat, horDist, verDist) => {
     for (let j = 0; j < horDist; j++) {
       count++;
       urls.push({
-        url: `https://maps.googleapis.com/maps/api/staticmap?center=${prevLat}%2C%20${prevLon}&zoom=19&size=600x400&maptype=satellite&key={API_KEY}
-        `,
+        url: `https://maps.googleapis.com/maps/api/staticmap?center=${prevLat}%2C%20${prevLon}&zoom=19&size=600x400&maptype=satellite&key=${GOOGLE_API_KEY}`,
         name: `image[${count}]_lat=${prevLat}_lon=${prevLon}.png`,
       });
       prevLon = Number((prevLon + 0.01).toFixed(6));
