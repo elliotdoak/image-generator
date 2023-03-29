@@ -1,4 +1,4 @@
-# Image Downloader
+# Static Image Generator
 
 This JavaScript code allows you to download a set of satellite images from Google Maps API, given the latitude, longitude, and dimensions of the area you want to download. When entering a starting coordinate, use the most north western point of the area you require coverage over.
 
