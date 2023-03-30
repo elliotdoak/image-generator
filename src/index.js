@@ -27,6 +27,57 @@ $(document).ready(() => {
     const urls = getUrls(lon, lat, horDist, verDist);
     downloadZip(urls);
   });
+
+  $("#csv-download-btn").on("click", async (event) => {
+    event.preventDefault();
+    const startLon = Number($("#lon").val());
+    const horDist = $("#hor-dist").val();
+    const verDist = $("#ver-dist").val();
+    let prevLat = Number($("#lat").val());
+    let count = 0;
+    let data = [];
+
+    for (let i = 0; i < verDist; i++) {
+      let prevLon = Number(startLon.toFixed(6));
+      for (let j = 0; j < horDist; j++) {
+        count++;
+        data.push({
+          latitude: prevLat,
+          longitude: prevLon,
+          imageNumber: count,
+        });
+        prevLon = Number((prevLon + 0.01).toFixed(6));
+      }
+      prevLat = Number((prevLat - 0.01).toFixed(6));
+    }
+
+    let csv =
+      "ImageNo,Latitude,Longitude,Boma,Fence,Building,Track/Road,Name,Comment,Boma,Fence,Building,Track/Road,Name,Comment,Boma,Fence,Building,Track/Road,Name,Comment\n";
+
+    for (let i = 0; i < data.length; i++) {
+      const row = `${data[i].imageNumber},${data[i].latitude},${data[i].longitude}\n`;
+      csv += row;
+    }
+
+    const filename = "image-logging.csv";
+
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    if (navigator.msSaveBlob) {
+      navigator.msSaveBlob(blob, filename);
+    } else {
+      const link = document.createElement("a");
+      if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+    }
+  });
 });
 
 const getUrls = (startLon, startLat, horDist, verDist) => {

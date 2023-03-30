@@ -12,7 +12,7 @@ form {
   min-width: 460px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 50px;
+  padding: 40px;
   border-radius: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
@@ -39,11 +39,17 @@ button[type="submit"] {
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
-  float: right;
+  margin: 10px;
 }
 
 button[type="submit"]:hover {
   background-color: #3e8e41;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
 .error-msg {

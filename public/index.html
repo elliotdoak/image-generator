@@ -22,6 +22,7 @@
         min="-180.000000"
         max="180.000000"
         id="lat"
+        name="lat"
         required
       /><br />
       <label for="hor-dist">Horizontal distance:</label>
@@ -40,7 +41,10 @@
         name="ver-dist"
         required
       /><br />
-      <button type="submit" id="submit-btn">Download</button>
+      <div class="btn-container">
+        <button type="submit" id="submit-btn">Download Images</button>
+        <button type="submit" id="csv-download-btn">Generate CSV</button>
+      </div>
     </form>
     <script type="module" src="../dist/main.js"></script>
   </body>
