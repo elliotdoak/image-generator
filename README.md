@@ -39,4 +39,5 @@ yarn run build
 
 1. Open index.html in your web browser, in vs code you can open the index.html and select the GoLive feature to easily start a local web server and preview the project in your browser.
 2. Enter the latitude and longitude of the area you want to download, as well as the surface area dimensions you would like to cover.
-3. Click the "Download" button to download a .zip file containing the requested images, this may take a minute depending on size of area.
+3. Click the "Download Images" button to download a .zip file containing the requested images, this may take a minute depending on size of area.
+4. Click the "Generate CSV" button to download a CSV file populated with coordinates data.
