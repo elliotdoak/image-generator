@@ -23,10 +23,11 @@ yarn
 ```
 
 3. Create a new file named constants.js in the same directory as index.js.
-4. In constants.js, define your GOOGLE_API_KEY value as shown below.
+4. In constants.js, define your GOOGLE_API_KEY value and incrementor (see 'Incrementing distance between images' at bottom for info on incrementations) as shown below.
 
 ```
    export const GOOGLE_API_KEY = "your_google_maps_api_key_here"
+   export const incrementor = 0.01
 ```
 
 5. To create `dist` build folder, run the following in your terminal
@@ -41,3 +42,14 @@ yarn run build
 2. Enter the latitude and longitude of the area you want to download, as well as the surface area dimensions you would like to cover.
 3. Click the "Download Images" button to download a .zip file containing the requested images, this may take a minute depending on size of area.
 4. Click the "Generate CSV" button to download a CSV file populated with coordinates data.
+
+## Incrementing distance between images
+
+On a Google Map coordinate, each decimal place corresponds to a different level of precision in the location data. The decimal places in the latitude and longitude coordinates represent progressively smaller units of distance as follows:
+
+0.1 degrees, is approximately 11.1 kilometers (6.9 miles) at the equator.
+0.01 degrees, is approximately 1.1 kilometers (0.69 miles) at the equator.
+0.001 degrees, is approximately 111 meters (364 feet) at the equator.
+0.0001 degrees, is approximately 11.1 meters (36 feet) at the equator.
+0.00001 degrees, is approximately 1.1 meters (3.6 feet) at the equator.
+0.000001 degrees, is approximately 0.11 meters (4.4 inches) at the equator.

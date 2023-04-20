@@ -2,7 +2,7 @@ import $ from "jquery";
 import Swal from "sweetalert2";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { GOOGLE_API_KEY } from "./constants";
+import { GOOGLE_API_KEY, incrementer } from "./constants";
 import { isValidForm } from "./utils";
 
 $(document).ready(() => {
@@ -46,9 +46,9 @@ $(document).ready(() => {
           longitude: prevLon,
           imageNumber: count,
         });
-        prevLon = Number((prevLon + 0.01).toFixed(6));
+        prevLon = Number((prevLon + incrementer).toFixed(6));
       }
-      prevLat = Number((prevLat - 0.01).toFixed(6));
+      prevLat = Number((prevLat - incrementer).toFixed(6));
     }
 
     let csv =
@@ -89,12 +89,12 @@ const getUrls = (startLon, startLat, horDist, verDist) => {
     for (let j = 0; j < horDist; j++) {
       count++;
       urls.push({
-        url: `https://maps.googleapis.com/maps/api/staticmap?center=${prevLat}%2C%20${prevLon}&zoom=19&size=600x400&maptype=satellite&key=${GOOGLE_API_KEY}`,
+        url: `https://maps.googleapis.com/maps/api/staticmap?center=${prevLat}%2C%20${prevLon}&zoom=17&size=600x400&maptype=satellite&key=${GOOGLE_API_KEY}`,
         name: `image[${count}]_lat=${prevLat}_lon=${prevLon}.png`,
       });
-      prevLon = Number((prevLon + 0.01).toFixed(6));
+      prevLon = Number((prevLon + incrementer).toFixed(6));
     }
-    prevLat = Number((prevLat - 0.01).toFixed(6));
+    prevLat = Number((prevLat - incrementer).toFixed(6));
   }
   return urls;
 };
