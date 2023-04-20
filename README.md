@@ -47,9 +47,9 @@ yarn run build
 
 On a Google Map coordinate, each decimal place corresponds to a different level of precision in the location data. The decimal places in the latitude and longitude coordinates represent progressively smaller units of distance as follows:
 
-0.1 degrees, is approximately 11.1 kilometers (6.9 miles) at the equator.
-0.01 degrees, is approximately 1.1 kilometers (0.69 miles) at the equator.
-0.001 degrees, is approximately 111 meters (364 feet) at the equator.
-0.0001 degrees, is approximately 11.1 meters (36 feet) at the equator.
-0.00001 degrees, is approximately 1.1 meters (3.6 feet) at the equator.
-0.000001 degrees, is approximately 0.11 meters (4.4 inches) at the equator.
+- 0.1 degrees, is approximately 11.1 kilometers (6.9 miles) at the equator.
+- 0.01 degrees, is approximately 1.1 kilometers (0.69 miles) at the equator.
+- 0.001 degrees, is approximately 111 meters (364 feet) at the equator.
+- 0.0001 degrees, is approximately 11.1 meters (36 feet) at the equator.
+- 0.00001 degrees, is approximately 1.1 meters (3.6 feet) at the equator.
+- 0.000001 degrees, is approximately 0.11 meters (4.4 inches) at the equator.
